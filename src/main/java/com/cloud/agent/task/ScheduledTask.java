@@ -52,11 +52,13 @@ public class ScheduledTask {
      */
     @Scheduled(initialDelay = 59 * 1000L, fixedRate = 120 * 1000)
     public void minTask() {
+        //初始化变量
         List<AppInfo> APP_INFO_LIST_CP = new ArrayList<AppInfo>();
         APP_INFO_LIST_CP.addAll(appInfoList);
         JSONObject jsonObject = new JSONObject();
         LogInfo logInfo = new LogInfo();
         Timestamp t = FormatUtil.getNowTime();
+
         logInfo.setHostname(commonConfig.getBindIp() + "：Agent错误");
         logInfo.setCreateTime(t);
         try {
@@ -147,7 +149,7 @@ public class ScheduledTask {
             if (!StringUtils.isEmpty(logInfo.getInfoContent())) {
                 jsonObject.put("logInfo", logInfo);
             }
-            restUtil.post(commonConfig.getServerUrl() + "/wgcloud/agent/minTask", jsonObject);
+            restUtil.post(commonConfig.getServerUrl() + "/cloud/agent/minTask", jsonObject);
         }
 
     }
@@ -167,7 +169,7 @@ public class ScheduledTask {
         try {
             JSONObject paramsJson = new JSONObject();
             paramsJson.put("hostname", commonConfig.getBindIp());
-            String resultJson = restUtil.post(commonConfig.getServerUrl() + "/wgcloud/appInfo/agentList", paramsJson);
+            String resultJson = restUtil.post(commonConfig.getServerUrl() + "/cloud/appInfo/agentList", paramsJson);
             if (resultJson != null) {
                 JSONArray resultArray = JSONUtil.parseArray(resultJson);
                 appInfoList.clear();
@@ -182,7 +184,7 @@ public class ScheduledTask {
             if (!StringUtils.isEmpty(logInfo.getInfoContent())) {
                 jsonObject.put("logInfo", logInfo);
             }
-            restUtil.post(commonConfig.getServerUrl() + "/wgcloud/agent/minTask", jsonObject);
+            restUtil.post(commonConfig.getServerUrl() + "/cloud/agent/minTask", jsonObject);
         }
     }
 
