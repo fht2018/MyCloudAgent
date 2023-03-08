@@ -33,6 +33,7 @@ public class ScheduledTask {
 
     private Logger logger = LoggerFactory.getLogger(ScheduledTask.class);
     public static List<AppInfo> appInfoList = Collections.synchronizedList(new ArrayList<AppInfo>());
+    private static String HOST_NAME = "/wgcloud";
 
     @Autowired
     private RestUtil restUtil;
@@ -149,7 +150,7 @@ public class ScheduledTask {
             if (!StringUtils.isEmpty(logInfo.getInfoContent())) {
                 jsonObject.put("logInfo", logInfo);
             }
-            restUtil.post(commonConfig.getServerUrl() + "/cloud/agent/minTask", jsonObject);
+            restUtil.post(commonConfig.getServerUrl() + HOST_NAME + "/agent/minTask", jsonObject);
         }
 
     }
@@ -169,7 +170,7 @@ public class ScheduledTask {
         try {
             JSONObject paramsJson = new JSONObject();
             paramsJson.put("hostname", commonConfig.getBindIp());
-            String resultJson = restUtil.post(commonConfig.getServerUrl() + "/cloud/appInfo/agentList", paramsJson);
+            String resultJson = restUtil.post(commonConfig.getServerUrl() + HOST_NAME + "/appInfo/agentList", paramsJson);
             if (resultJson != null) {
                 JSONArray resultArray = JSONUtil.parseArray(resultJson);
                 appInfoList.clear();
@@ -184,7 +185,7 @@ public class ScheduledTask {
             if (!StringUtils.isEmpty(logInfo.getInfoContent())) {
                 jsonObject.put("logInfo", logInfo);
             }
-            restUtil.post(commonConfig.getServerUrl() + "/cloud/agent/minTask", jsonObject);
+            restUtil.post(commonConfig.getServerUrl() + HOST_NAME + "/agent/minTask", jsonObject);
         }
     }
 

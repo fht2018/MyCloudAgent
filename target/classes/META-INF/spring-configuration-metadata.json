@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "base",
+      "type": "com.cloud.agent.config.CommonConfig",
+      "sourceType": "com.cloud.agent.config.CommonConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "base.bind-ip",
+      "type": "java.lang.String",
+      "sourceType": "com.cloud.agent.config.CommonConfig"
+    },
+    {
+      "name": "base.server-url",
+      "type": "java.lang.String",
+      "sourceType": "com.cloud.agent.config.CommonConfig"
+    },
+    {
+      "name": "base.wg-token",
+      "type": "java.lang.String",
+      "sourceType": "com.cloud.agent.config.CommonConfig"
+    }
+  ],
+  "hints": []
+}

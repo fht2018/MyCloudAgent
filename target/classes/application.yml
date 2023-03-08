@@ -8,8 +8,8 @@ spring:
 #日志文件输出路径
 logging:
   file:
-    name:
-      path: ./log
+    path: ./log
+
 #自定义配置参数
 base:
   #cloud-server端访问地址
